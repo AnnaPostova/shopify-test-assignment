@@ -1,0 +1,78 @@
+{% comment %}
+    Featured Products section
+{% endcomment %}
+
+<section class="featured-products" data-section-id="{{ section.id }}">
+    <div class="featured-products__container page-width">
+
+        {% if section.settings.heading != blank %}
+            <h2 class="featured-products__heading">
+                {{ section.settings.heading }}
+            </h2>
+        {% endif %}
+
+        {% assign collection = section.settings.collection %}
+
+        {% assign cart_product_ids = '' %}
+        {% for item in cart.items %}
+            {% assign cart_product_ids = cart_product_ids | append: item.product_id | append: ',' %}
+        {% endfor %}
+
+        {% if collection != blank and collection.products_count > 0 %}
+            <ul class="featured-products__list" role="list">
+                {% for product in collection.products %}
+                    {% assign pid = product.id | append: ',' %}
+                    {% unless cart_product_ids contains pid %}
+                        <li class="featured-products__item">
+                            <a href="{{ product.url }}" class="featured-products__link">
+                                {% if product.featured_image %}
+                                    <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.featured_image.alt | escape }}"
+                                        loading="lazy" class="featured-products__image">
+                                {% endif %}
+
+                                <h3 class="featured-products__title">
+                                    {{ product.title }}
+                                </h3>
+
+                                <span class="featured-products__price">
+                                    {{ product.price | money }}
+                                </span>
+                            </a>
+
+                            <button type="button" class="featured-products__add-to-cart" data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+                                Add to cart
+                            </button>
+                        </li>
+                    {% endunless %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No products found.</p>
+        {% endif %}
+
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
+}
+{% endschema %}
