@@ -1,10 +1,6 @@
-class FeaturedProducts {
-    constructor() {
-        this.init();
-    }
-
-    init() {
-        document.addEventListener('click', (event) => {
+class FeaturedProducts extends HTMLElement {
+    connectedCallback() {
+        this.addEventListener('click', (event) => {
             const button = event.target.closest('.featured-products__add-to-cart');
             if (!button) return;
 
@@ -71,6 +67,4 @@ class FeaturedProducts {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    new FeaturedProducts();
-});
+customElements.define('featured-products', FeaturedProducts);
