@@ -1,3 +1,5 @@
+{{ 'featured-products.css' | asset_url | stylesheet_tag }}
+
 {% comment %}
     Featured Products section
 {% endcomment %}
@@ -33,14 +35,10 @@
                                 <h3 class="featured-products__title">
                                     {{ product.title }}
                                 </h3>
-
-                                <span class="featured-products__price">
-                                    {{ product.price | money }}
-                                </span>
                             </a>
 
                             <button type="button" class="featured-products__add-to-cart" data-variant-id="{{ product.selected_or_first_available_variant.id }}">
-                                Add to cart
+                                Add to cart - {{ product.price | money }}
                             </button>
                         </li>
                     {% endunless %}

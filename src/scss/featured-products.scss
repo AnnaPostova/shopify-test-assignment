@@ -1,0 +1,119 @@
+$bp-tablet: 768px;
+$bp-desktop: 992px;
+
+.featured-products {
+    padding: 44px 0 60px;
+
+    @media (min-width: $bp-tablet) {
+        padding: 64px 0 100px;
+    }
+
+    @media (min-width: $bp-desktop) {
+        padding: 80px 0 148px;
+    }
+
+    &__heading {
+        margin: 0 0 30px;
+        text-align: center;
+        font-weight: 900;
+        font-size: 26px;
+        color: #656874;
+
+        @media (min-width: $bp-tablet) {
+            margin: 0 0 46px;
+            font-size: 34px;
+        }
+
+        @media (min-width: $bp-desktop) {
+            margin: 0 0 50px;
+            font-size: 42px;
+        }
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 50px;
+
+        @media (min-width: $bp-tablet) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px 80px;
+        }
+
+        @media (min-width: $bp-desktop) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 40px 120px;
+        }
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-width: 0;
+    }
+
+    &__link {
+        width: 100%;
+        display: grid;
+        gap: 30px;
+        justify-items: center;
+        text-decoration: none;
+    }
+
+    &__image {
+        width: 100%;
+        max-width: 400px;
+        max-height: 260px;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        display: block;
+
+        @media (min-width: $bp-tablet) {
+            max-width: 100%;
+            max-height: 290px;
+        }
+
+        @media (min-width: $bp-desktop) {
+            max-height: 320px;
+        }
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 22px;
+        line-height: 1.5;
+        font-weight: 700;
+        color: #656874;
+    }
+
+    &__add-to-cart {
+        margin-top: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px 0;
+        background: #464B90;
+        color: #fff;
+        border: 1px solid #464B90;
+        border-radius: 40px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+        cursor: pointer;
+        width: 100%;
+        max-width: 285px;
+
+        &:hover {
+            filter: brightness(0.96);
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+}
