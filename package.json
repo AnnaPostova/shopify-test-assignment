@@ -1,0 +1,16 @@
+{
+  "name": "shopify-test-assignment",
+  "private": true,
+  "scripts": {
+    "build": "gulp build",
+    "watch": "gulp watch"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-dart-sass": "^1.1.0",
+    "sass": "^1.77.0",
+    "gulp-postcss": "^10.0.0",
+    "autoprefixer": "^10.4.20",
+    "gulp-sourcemaps": "^3.0.0"
+  }
+}
