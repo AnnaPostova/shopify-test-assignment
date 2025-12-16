@@ -21,7 +21,7 @@ class FeaturedProducts {
         try {
             const res = await fetch('/cart/add.js', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                headers: {'Content-Type': 'application/json','Accept': 'application/json'},
                 body: JSON.stringify({
                     id: variantId,
                     quantity: 1,
@@ -33,16 +33,21 @@ class FeaturedProducts {
             if (!res.ok) throw new Error(await res.text());
 
             const state = await res.json();
-
             const drawer = document.querySelector('cart-drawer');
-            if (drawer?.renderContents) {
-                drawer.renderContents(state);
-            } else {
-                window.location.pathname = '/cart';
+
+            if (!drawer?.renderContents) {
+                window.location.href = '/cart';
                 return;
             }
 
+            drawer.renderContents(state);
+
+            drawer.classList.remove('is-empty');
+
+            if (drawer.open) drawer.open();
+
             await this.updateFeaturedSection();
+
         } catch (e) {
             console.error('Add to cart error:', e);
         }
